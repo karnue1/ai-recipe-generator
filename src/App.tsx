@@ -6,6 +6,7 @@ import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import outputs from "../amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
+
 Amplify.configure(outputs);
 
 const amplifyClient = generateClient<Schema>({
@@ -35,3 +36,20 @@ function App() {
       setLoading(false);
     }
   };
+
+  return (
+    <main>
+      <h1>Titus Gbanquoi</h1>
+      <form onSubmit={onSubmit}>
+        <label htmlFor="ingredients">Enter ingredients:</label>
+        <input type="text" id="ingredients" name="ingredients" required />
+        <button type="submit">Generate Recipe</button>
+      </form>
+      <div>
+        {loading ? <Loader /> : <p>{result}</p>}
+      </div>
+    </main>
+  );
+}
+
+export default App;
